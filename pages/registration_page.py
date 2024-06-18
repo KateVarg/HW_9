@@ -1,12 +1,14 @@
 from selene import browser, have
 import os
 from data.user import User
+import tests
 
 
 class RegistrationPage:
 
     def open(self):
         browser.open('/automation-practice-form')
+        return self
 
     def fill_first_name(self, first_name):
         browser.element('#firstName').type(first_name)
@@ -45,7 +47,9 @@ class RegistrationPage:
         return self
 
     def choose_form_file(self, path):
-        browser.element('.form-file').click().element('#uploadPicture').send_keys(os.path.abspath(f'images/{path}'))
+        browser.element('.form-file').click()
+        browser.element('#uploadPicture').set_value(os.path.abspath(
+            os.path.join(os.path.dirname(tests.__file__), f'images/{path}')))
         return self
 
     def fill_address(self, address):

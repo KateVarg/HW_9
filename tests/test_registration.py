@@ -1,4 +1,4 @@
-from modules.registration_page import RegistrationPage
+from pages.registration_page import RegistrationPage
 from data.user import User
 
 
@@ -20,5 +20,4 @@ def test_send_practice_form():
                 'NCR',
                 'Gurgaon'
                 )
-    page.open()
-    page.register(user).check_registrated_user(user)
+    page.open().register(user).check_registrated_user(user)
